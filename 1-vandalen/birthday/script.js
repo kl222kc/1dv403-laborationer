@@ -11,20 +11,23 @@
 			var birthMonth = date.getMonth();
 			var birthDay = date.getDate();
 
+			var firstDate = new Date(birthYear, birthMonth, birthDay);
+
+			var today = new Date();
+
+			var year = today.getFullYear();
+			var month = today.getMonth();
+			var day = today.getDate();
+
+			var secondDate = new Date(year, month, day);
+
 			if(!date.getFullYear() && !date.getMonth() && !date.getDate()) {
 				throw new Error("Felaktikt Datum!");
 			}
+			else if(firstDate > secondDate) {
+				throw new Error("Du är ännu inte född!");
+			}
 			else {
-
-				var firstDate = new Date(birthYear, birthMonth, birthDay);
-
-				var today = new Date();
-
-				var year = today.getFullYear();
-				var month = today.getMonth();
-				var day = today.getDate();
-
-				var secondDate = new Date(year, month, day);
 
 				var daysLeft = firstDate.getTime() - secondDate.getTime();
 
