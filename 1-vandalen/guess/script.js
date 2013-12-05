@@ -11,13 +11,9 @@ window.onload = function(){
 			
 		// Plats för förändring.
 
-		guesses++;
-
 		var answer = new Array();
-
-		if (secret == number) {
-			answer[0] = true;
-			answer[1] = "Grattis du vann! Det hemliga talet var " + secret + " och du behövde " + guesses + " gissningar för att hitta det.";
+		if(secret === ""){
+			answer[0] = false;
 			return answer;
 		}
 
@@ -26,6 +22,15 @@ window.onload = function(){
 			answer[1] = "Talet är utanför intervallet 0 - 100";
 			return answer;
 		}
+		
+		guesses++;
+		
+		if (secret == number) {
+			answer[0] = true;
+			answer[1] = "Grattis du vann! Det hemliga talet var " + secret + " och du behövde " + guesses + " gissningar för att hitta det.";
+			return answer;
+		}
+		
 
 		if (secret < number) {
 			answer[0] = false;

@@ -7,12 +7,11 @@ window.onload = function(){
 
 	var result = "";
 
-	str = str.replace(/a/g, "#");
-	str = str.replace(/A/g, "#");
+	str = str.replace(/a/gi, "#");
 
 	for (var i = 0; i < str.length; i++)
 	{
-		if (str.charAt(i) === str.charAt(i).toLowerCase()) {
+		if (str.charAt(i).toLowerCase()) {
 			result += str.charAt(i).toUpperCase();
 		}
 		else {

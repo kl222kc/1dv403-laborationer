@@ -16,11 +16,10 @@ var makePerson = function(persArr){
 		names = names + persArr[i].name;
 
 		// Lägger till ", " efter alla namnen förutom det sista
-		if (i != Object.keys(persArr).length - 1) {
+		if (i !== persArr.length - 1) {
 			names = names + ", ";
 		}
 	}
-
 	// Sorterar åldrarna i storleks ordning
 	persArr.sort(function (a, b) {
 		return a.age - b.age;
@@ -28,7 +27,7 @@ var makePerson = function(persArr){
 
 	// Variabler för att få ut högsta och lägsta åldrarna
 	var minAge = persArr[0].age;
-	var maxAge = persArr[Object.keys(persArr).length - 1].age;
+	var maxAge = persArr[persArr.length - 1].age;
 
 	// Tar ut medelvärdet
 	var avg = sum/Object.keys(persArr).length;

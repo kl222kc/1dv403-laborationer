@@ -1,7 +1,6 @@
 	"use strict";
 
 	window.onload = function(){
-
 		
 		var birthday = function(date){
 
@@ -22,7 +21,7 @@
 			var secondDate = new Date(year, month, day);
 
 			if(!date.getFullYear() && !date.getMonth() && !date.getDate()) {
-				throw new Error("Felaktikt Datum!");
+				throw new Error("Ogiltligt Datum!");
 			}
 			else if(firstDate > secondDate) {
 				throw new Error("Du är ännu inte född!");
