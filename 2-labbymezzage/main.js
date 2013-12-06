@@ -2,16 +2,23 @@
 
 var main = {
 
-messages: [],
+	messages: [],
 
-init: window.onload = function() {
+	init: window.onload = function() {
 
-var mess = new Message("Testmeddelande", new Date());
+		var button = document.querySelector("form button");
+		var text = "";
+		var mess;
 
-main.messages.push(mess);
+		button.onclick = function (e) {
+ 		e.preventDefault(); // prevents the default action the browser makes on that event.
+ 		text = document.querySelector("textarea").value;
+ 		mess = new Message(text, new Date());
+ 		main.messages.push(mess);
+ 		alert(main.messages[0]);
+ 		alert(main.messages[1]);
+ 	};
 
-//alert(main.messages[0]);
-
-}
+ }
 
 };
