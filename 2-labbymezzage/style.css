@@ -1,0 +1,29 @@
+#container {
+	width: 700px;
+	margin: auto;
+	min-height: 400px;
+}
+
+#container h1 {
+	text-align: center;
+}
+
+form {
+	width: 500px;
+	height: 200px;
+	margin: auto;
+	background-color: white;
+	text-align: center;
+	background-color: black;
+}
+
+textarea {
+	width: 450px;
+	height: 140px;
+	margin-top: 20px;
+}
+
+input {
+	float: right;
+	margin-right: 20px;
+}

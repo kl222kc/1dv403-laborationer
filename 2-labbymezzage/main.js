@@ -10,7 +10,7 @@ var mess = new Message("Testmeddelande", new Date());
 
 main.messages.push(mess);
 
-alert(main.messages[0]);
+//alert(main.messages[0]);
 
 }
 
