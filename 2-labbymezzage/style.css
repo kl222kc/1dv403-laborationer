@@ -27,3 +27,17 @@ input {
 	float: right;
 	margin-right: 20px;
 }
+
+#messageboard {
+	margin-top: 20px;
+}
+
+#messageboard p {
+	margin: 0;
+	background-color: green;
+	color: white;
+}
+
+#messageboard p:nth-child(even) {
+	background-color: red;
+}

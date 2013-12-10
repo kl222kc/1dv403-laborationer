@@ -22,7 +22,7 @@ function Message(message, date) {
 		return this.getText()+" ("+this.getDate()+")";
 	}
 
-	Message.prototype.getHTMLtext = function() {
+	Message.prototype.getHTMLText = function() {
 
 		var str = this.getText();
 		return str.replace(/\n/g, '<br />');
