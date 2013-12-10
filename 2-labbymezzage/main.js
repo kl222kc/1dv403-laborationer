@@ -70,7 +70,7 @@ var main = {
  	time.setAttribute("class", "time");
  	
  	delButton.setAttribute("src","pics/delete.png");
- 	delButton.setAttribute("class","delButton");
+ 	delButton.setAttribute("class","messageButton");
  	delButton.addEventListener("click", deleteMessage, false)
 
  	function deleteMessage()
@@ -84,7 +84,7 @@ var main = {
  	}
 
  	dateButton.setAttribute("src","pics/clock.png");
- 	dateButton.setAttribute("class","delButton");
+ 	dateButton.setAttribute("class","messageButton");
  	dateButton.addEventListener("click", showTime, false)
 
  	var date = main.messages[messageID].getDate();
