@@ -33,20 +33,20 @@ input {
 }
 
 .message p {
-	margin-bottom: 20px;
+	word-wrap:break-word;
 }
 
 .message p.text {
 	margin: 0;
-	width: 500px;
-	float: left;
+	margin-top: 40px;
 }
 
 .message p.time {
-	float: right;
-	width: 200px;
 	margin: 0;
-	text-align: right;
+	text-align: left;
+	width: 300px;
+	float: left;
+	color: black;
 }
 
 .message {
@@ -60,4 +60,13 @@ input {
 
 .messageCount {
 	text-align: right;
+}
+
+.delButton {
+	float: right;
+}
+
+.delButton:hover {
+	opacity:0.6;
+	cursor: pointer;
 }

@@ -2,31 +2,35 @@
 
 var main = {
 
- messages: [],
+	messages: [],
 
- init: window.onload = function() {
+	init: window.onload = function() {
 
- 	var button = document.querySelector("form button");
- 	var text = "";
- 	var mess;
+		var button = document.querySelector("form button");
+		var text = "";
+		var mess;
 
- 	button.onclick = function (e) {
+		button.onclick = function (e) {
  		e.preventDefault(); // prevents the default action the browser makes on that event.
  		text = document.querySelector("textarea").value;
  		mess = new Message(text, new Date());
  		main.messages.push(mess);
  		main.renderMessages();
  	};
+
  },
 
 
-	renderMessages: function() {
+ renderMessages: function() {
+
+	// Tömmer formuläret
+	document.querySelector("textarea").value = "";
 
  	// Tar bort alla meddelenden
  	document.querySelector("#messageboard").innerHTML = "";
 
  	// Skriver ut antal meddelanden som är postade
-	var div = document.querySelector("#messageboard");
+ 	var div = document.querySelector("#messageboard");
  	var messageCount = document.createElement("p");
  	messageCount.setAttribute("class", "messageCount");
  	messageCount.innerHTML = "Antal meddelanden: " + main.messages.length;
@@ -47,19 +51,46 @@ var main = {
  	var divMessage = document.createElement("div");
  	var text = document.createElement("p");
  	var time = document.createElement("p");
+ 	var delButton = document.createElement("img");
+ 	var dateButton = document.createElement("img");
 
  	divMessage.setAttribute("class", "message");
  	text.setAttribute("class", "text");
  	time.setAttribute("class", "time");
+ 	
+ 	delButton.setAttribute("src","pics/delete.png");
+ 	delButton.setAttribute("class","delButton");
+ 	delButton.addEventListener("click", deleteMessage, false)
+
+ 	function deleteMessage()
+ 	{
+ 		if(confirm("Vill du ta bort meddelandet?"))
+ 		{
+ 			main.messages.splice(messageID, 1);
+ 			main.renderMessages();
+ 		}
+
+ 	}
+
+ 	dateButton.setAttribute("src","pics/clock.png");
+ 	dateButton.setAttribute("class","delButton");
+ 	dateButton.addEventListener("click", showTime, false)
 
  	var date = main.messages[messageID].getDate();
 
- 	text.innerHTML = main.messages[messageID].getHTMLText();
- 	time.innerHTML = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
+ 	function showTime()
+ 	{
+ 		alert(date);
+ 	}
 
-	div.appendChild(divMessage);
-	divMessage.appendChild(text);
+ 	text.innerHTML = main.messages[messageID].getHTMLText();
+ 	time.innerHTML = "Skrivet: " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
+
+ 	div.appendChild(divMessage);
  	divMessage.appendChild(time);
+ 	divMessage.appendChild(dateButton);
+ 	divMessage.appendChild(delButton);
+ 	divMessage.appendChild(text);
  }
 
 };
