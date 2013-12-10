@@ -16,6 +16,7 @@ var main = {
  		mess = new Message(text, new Date());
  		main.messages.push(mess);
  		main.renderMessages();
+
  	};
  },
 
@@ -37,13 +38,15 @@ var main = {
  	var divMessage = document.createElement("div");
  	var text = document.createElement("p");
  	var time = document.createElement("p");
- 	
+
  	divMessage.setAttribute("class", "message");
  	text.setAttribute("class", "text");
  	time.setAttribute("class", "time");
 
+ 	var date = main.messages[messageID].getDate();
+
  	text.innerHTML = main.messages[messageID].getHTMLText();
- 	time.innerHTML = main.messages[messageID].getDate().getHours() + ":" + main.messages[messageID].getDate().getMinutes() + ":" + main.messages[messageID].getDate().getSeconds();
+ 	time.innerHTML = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
 
 	div.appendChild(divMessage);
 	divMessage.appendChild(text);
