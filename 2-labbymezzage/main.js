@@ -15,10 +15,10 @@ var main = {
  	};
 
  	textarea.onkeypress = function (e) {
- 		if (e.keyCode == 13) {
+ 		if (e.keyCode == 13 && !event.shiftKey) {
  			e.preventDefault(); // prevents the default action the browser makes on that event.
  			main.saveMessage();
- 		}      
+ 		}
  	};
 
  },
