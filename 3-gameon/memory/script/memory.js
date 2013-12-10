@@ -2,7 +2,11 @@
 
 var Memory = {
 
+	memory: [],
+
 	init: window.onload = function() {
-		alert("hej");
+		var random;
+		random = new RandomGenerator.getPictureArray(4, 4);
+		console.log(random);
 	},
 };
