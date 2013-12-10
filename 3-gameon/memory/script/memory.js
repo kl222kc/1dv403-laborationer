@@ -20,12 +20,16 @@ var Memory = {
 	for(var i=0; i < Memory.board.length; ++i) {
 
 		var div = document.querySelector("#board");
-		var number = document.createElement("img");
+		var card = document.createElement("img");
+		card.setAttribute("src","pics/0.png");
+		card.setAttribute("class","card");
 
-		number.setAttribute("src","pics/0.png");
+		if (i % cols === 0) {
+			card.setAttribute("class","card newrow");
+		}
 
- 		number.innerHTML += Memory.board[i];
- 		div.appendChild(number);
+ 		card.innerHTML += Memory.board[i];
+ 		div.appendChild(card);
  	}
 	
 	},
