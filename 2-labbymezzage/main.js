@@ -16,24 +16,33 @@ var main = {
  		mess = new Message(text, new Date());
  		main.messages.push(mess);
  		main.renderMessages();
-
  	};
  },
 
 
 	renderMessages: function() {
+
  	// Tar bort alla meddelenden
  	document.querySelector("#messageboard").innerHTML = "";
+
+ 	// Skriver ut antal meddelanden som är postade
+	var div = document.querySelector("#messageboard");
+ 	var messageCount = document.createElement("p");
+ 	messageCount.setAttribute("class", "messageCount");
+ 	messageCount.innerHTML = "Antal meddelanden: " + main.messages.length;
+ 	div.appendChild(messageCount);
+
  	// Skriver ut alla meddelanden
  	for(var i=0; i < main.messages.length; ++i) {
  		main.renderMessage(i);
  	}
 
+
  },
 
  renderMessage: function(messageID) {
- 	// Meddelandets text
 
+ 	// Meddelandets text
  	var div = document.querySelector("#messageboard");
  	var divMessage = document.createElement("div");
  	var text = document.createElement("p");
