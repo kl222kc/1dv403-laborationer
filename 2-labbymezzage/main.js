@@ -6,20 +6,31 @@ var main = {
 
 	init: window.onload = function() {
 
-		var button = document.querySelector("form button");
-		var text = "";
-		var mess;
+		var button = document.querySelector("#submit");
+		var textarea = document.querySelector("#textarea");
 
 		button.onclick = function (e) {
  		e.preventDefault(); // prevents the default action the browser makes on that event.
- 		text = document.querySelector("textarea").value;
- 		mess = new Message(text, new Date());
- 		main.messages.push(mess);
- 		main.renderMessages();
+ 		main.saveMessage();
+ 	};
+
+ 	textarea.onkeypress = function (e) {
+ 		if (e.keyCode == 13) {
+ 			e.preventDefault(); // prevents the default action the browser makes on that event.
+ 			main.saveMessage();
+ 		}      
  	};
 
  },
 
+ saveMessage: function() {
+ 	var text = "";
+ 	var mess;
+ 	text = document.querySelector("textarea").value;
+ 	mess = new Message(text, new Date());
+ 	main.messages.push(mess);
+ 	main.renderMessages();
+ },
 
  renderMessages: function() {
 
