@@ -32,12 +32,28 @@ input {
 	margin-top: 20px;
 }
 
-#messageboard p {
-	margin: 0;
-	background-color: green;
-	color: white;
+.message p {
+	margin-bottom: 20px;
 }
 
-#messageboard p:nth-child(even) {
-	background-color: red;
+.message p.text {
+	margin: 0;
+	width: 500px;
+	float: left;
+}
+
+.message p.time {
+	float: right;
+	width: 200px;
+	margin: 0;
+	text-align: right;
+}
+
+.message {
+	background-color: green;
+	width: 700px;
+	color: white;
+	min-height: 50px;
+	margin-top: 20px;
+	border: 1px solid black;
 }

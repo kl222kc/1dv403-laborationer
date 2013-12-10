@@ -32,10 +32,22 @@ var main = {
 
  renderMessage: function(messageID) {
  	// Meddelandets text
+
  	var div = document.querySelector("#messageboard");
+ 	var divMessage = document.createElement("div");
  	var text = document.createElement("p");
+ 	var time = document.createElement("p");
+ 	
+ 	divMessage.setAttribute("class", "message");
+ 	text.setAttribute("class", "text");
+ 	time.setAttribute("class", "time");
+
  	text.innerHTML = main.messages[messageID].getHTMLText();
- 	div.appendChild(text);
+ 	time.innerHTML = main.messages[messageID].getDate().getHours() + ":" + main.messages[messageID].getDate().getMinutes() + ":" + main.messages[messageID].getDate().getSeconds();
+
+	div.appendChild(divMessage);
+	divMessage.appendChild(text);
+ 	divMessage.appendChild(time);
  }
 
 };
