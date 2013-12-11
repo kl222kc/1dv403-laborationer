@@ -2,6 +2,19 @@
 	float: left;
 }
 
+.card img {
+	float: left;
+	width: 32px;
+}
+
 .newrow {
 	clear: left;
+}
+
+a:hover img {
+	opacity:0.6;
+}
+
+a:focus img {
+	opacity:0.6;
 }
