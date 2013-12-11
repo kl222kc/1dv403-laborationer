@@ -4,6 +4,10 @@ var Memory = {
 
 	board: [],
 
+	guesses: 0,
+	card1: "",
+	card2: "",
+
 	init: window.onload = function() {
 		var rows = 4;
 		var cols = 4;
@@ -40,7 +44,10 @@ var Memory = {
  		// Kollar ifall man klickar på något kort
  		link.onclick = function(e) {
 			e.preventDefault(); // prevents the default action the browser makes on that event.
-			Memory.pickCard(this);
+
+			if(this.querySelector('a > img').getAttribute("src") === "pics/0.png") {
+				Memory.pickCard(this);
+			}
 		};
 
 	}
@@ -48,8 +55,32 @@ var Memory = {
 },
 
 	// Funktion som visar korten
-	pickCard: function(link) {
-		link.querySelector('a > img').setAttribute("src","pics/" + link.id +".png");
+	pickCard: function(link) {	
+
+		if(Memory.guesses === 0) {
+			link.querySelector('a > img').setAttribute("src","pics/" + link.id +".png");
+			Memory.card1 = link;
+			Memory.guesses++;
+		}
+		else if(Memory.guesses === 1) {
+			link.querySelector('a > img').setAttribute("src","pics/" + link.id +".png");
+			Memory.card2 = link;
+			Memory.guesses++;
+		}
+
+		if (Memory.card1.id === Memory.card2.id) {
+			console.log("grattis");
+			Memory.guesses = 0;
+		}
+
+		if(Memory.guesses > 1 && Memory.card1.id !== Memory.card2.id) {
+			Memory.card1.querySelector('a > img').setAttribute("src", "pics/0.png");
+			Memory.card2.querySelector('a > img').setAttribute("src", "pics/0.png");
+			Memory.card1 = 0;
+			Memory.card2 = 0;
+			Memory.guesses = 0;
+		}			
+		
 	}
 	
 };
