@@ -60,16 +60,19 @@ var Memory = {
 		if(Memory.guesses < 2) {
 
 			Memory.guesses++;
-
+			
+			// Ifall det är första gissningen tilldela kortet till card1
 			if(Memory.guesses === 1) {
 				Memory.card1 = link.querySelector('a > img');
 				Memory.card1.setAttribute("src","pics/" + link.id +".png");
 			}
-
+			
+			// Ifall det är andra gissningen tilldela kortet till card2
 			if(Memory.guesses === 2) {
 				Memory.card2 = link.querySelector('a > img');
 				Memory.card2.setAttribute("src","pics/" + link.id +".png");
-
+				
+				// Om dom 2 korten inte är likadanna starta en timer sen vänd tillbacka korten
 				if(Memory.guesses > 1 && Memory.card1.getAttribute("src") !== Memory.card2.getAttribute("src")) {
 					setTimeout(function() {
 						Memory.card1.setAttribute("src", "pics/0.png");
@@ -77,7 +80,8 @@ var Memory = {
 						Memory.guesses = 0;
 					}, 1000);
 				}
-
+				
+				// Om dom 2 korten är likadanna nollställ antal gissningar och öka poängen med 1
 				if (Memory.card1.getAttribute("src") === Memory.card2.getAttribute("src")) {
 
 					Memory.guesses = 0;
@@ -87,7 +91,8 @@ var Memory = {
 			}
 
 		}
-
+		
+		// Kollar ifall alla kort är uppvända och spelet över
 		if(Memory.score === Memory.board.length / 2) {
 			alert("du vann!");
 			if(confirm("Spela igen?"))

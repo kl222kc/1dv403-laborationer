@@ -26,10 +26,12 @@ var main = {
  saveMessage: function() {
  	var text = "";
  	var mess;
- 	text = document.querySelector("textarea").value;
+	if(document.querySelector("textarea").value !== "") {
+	text = document.querySelector("textarea").value;
  	mess = new Message(text, new Date());
  	main.messages.push(mess);
  	main.renderMessages();
+	}
  },
 
  renderMessages: function() {

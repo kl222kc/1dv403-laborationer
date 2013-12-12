@@ -1,20 +1,28 @@
 #container {
-	width: 700px;
+	width: 500px;
 	margin: auto;
 	min-height: 400px;
+	background-color: #5B83AD;
+	padding: 1em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 #container h1 {
-	text-align: center;
+font-family: Garamond, serif;
+line-height: 1em;
+color: #fff;
+font-weight:bold;
+font-size: 62px;
+text-align: center;
 }
 
 form {
 	width: 500px;
 	height: 200px;
 	margin: auto;
-	background-color: white;
 	text-align: center;
-	background-color: black;
 }
 
 textarea {
@@ -49,12 +57,12 @@ button#submit:hover {
 }
 
 .message {
-	background-color: green;
-	width: 700px;
-	color: white;
+	background-color: #DDECEF;
+	width: 500px;
 	min-height: 50px;
 	margin-top: 20px;
 	border: 1px solid black;
+	padding: 5px;
 }
 
 .messageCount {
