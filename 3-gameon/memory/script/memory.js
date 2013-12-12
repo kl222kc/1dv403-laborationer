@@ -5,8 +5,9 @@ var Memory = {
 	board: [],
 
 	guesses: 0,
-	card1: "",
-	card2: "",
+	card1: 0,
+	card2: 0,
+	score: 0,
 
 	init: window.onload = function() {
 		var rows = 4;
@@ -44,7 +45,6 @@ var Memory = {
  		// Kollar ifall man klickar på något kort
  		link.onclick = function(e) {
 			e.preventDefault(); // prevents the default action the browser makes on that event.
-
 			if(this.querySelector('a > img').getAttribute("src") === "pics/0.png") {
 				Memory.pickCard(this);
 			}
@@ -57,30 +57,45 @@ var Memory = {
 	// Funktion som visar korten
 	pickCard: function(link) {	
 
-		if(Memory.guesses === 0) {
-			link.querySelector('a > img').setAttribute("src","pics/" + link.id +".png");
-			Memory.card1 = link;
+		if(Memory.guesses < 2) {
+
 			Memory.guesses++;
-		}
-		else if(Memory.guesses === 1) {
-			link.querySelector('a > img').setAttribute("src","pics/" + link.id +".png");
-			Memory.card2 = link;
-			Memory.guesses++;
+
+			if(Memory.guesses === 1) {
+				Memory.card1 = link.querySelector('a > img');
+				Memory.card1.setAttribute("src","pics/" + link.id +".png");
+			}
+
+			if(Memory.guesses === 2) {
+				Memory.card2 = link.querySelector('a > img');
+				Memory.card2.setAttribute("src","pics/" + link.id +".png");
+
+				if(Memory.guesses > 1 && Memory.card1.getAttribute("src") !== Memory.card2.getAttribute("src")) {
+					setTimeout(function() {
+						Memory.card1.setAttribute("src", "pics/0.png");
+						Memory.card2.setAttribute("src", "pics/0.png");
+						Memory.guesses = 0;
+					}, 1000);
+				}
+
+				if (Memory.card1.getAttribute("src") === Memory.card2.getAttribute("src")) {
+
+					Memory.guesses = 0;
+					Memory.score++;
+				}
+
+			}
+
 		}
 
-		if (Memory.card1.id === Memory.card2.id) {
-			console.log("grattis");
-			Memory.guesses = 0;
+		if(Memory.score === Memory.board.length / 2) {
+			alert("du vann!");
+			if(confirm("Spela igen?"))
+ 			{
+ 				location.reload();
+ 			}	
 		}
 
-		if(Memory.guesses > 1 && Memory.card1.id !== Memory.card2.id) {
-			Memory.card1.querySelector('a > img').setAttribute("src", "pics/0.png");
-			Memory.card2.querySelector('a > img').setAttribute("src", "pics/0.png");
-			Memory.card1 = 0;
-			Memory.card2 = 0;
-			Memory.guesses = 0;
-		}			
-		
 	}
 	
 };
