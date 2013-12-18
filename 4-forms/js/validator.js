@@ -54,10 +54,16 @@ var Validator = {
 
 	// Kontrollerar ifall postnummret är rätt ifyllt
 	if(this.id === "zip" && !(/^(\d{5})?$/.test(this.value))) {
+
+		// Tar bort allt som inte är en siffra.
+		this.value = this.value.replace(/[^0-9]/g,"")
+
+		if (this.value === "" || !(/^(\d{5})?$/.test(this.value))) {
 		var errorMessage = document.createElement("p");
 		errorMessage.setAttribute("class","error");
 		errorMessage.appendChild(document.createTextNode("Ogiltligt Postnummer!"));
 		this.parentNode.appendChild(errorMessage);
+		}
 	}
 
 }
