@@ -3,6 +3,7 @@
 var main = {
 
 	messages: [],
+	save: [],
 
 	init: window.onload = function() {
 
@@ -80,7 +81,6 @@ var main = {
  		if(confirm("Vill du ta bort meddelandet?"))
  		{
  			main.messages.splice(messageID, 1);
- 			main.renderMessages();
  		}
 
  	}
@@ -98,7 +98,6 @@ var main = {
 
  	text.innerHTML = main.messages[messageID].getHTMLText();
  	time.innerHTML = "Skrivet: " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
-
  	div.appendChild(divMessage);
  	divMessage.appendChild(time);
  	divMessage.appendChild(dateButton);
