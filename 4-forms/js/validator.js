@@ -22,9 +22,11 @@ var Validator = {
 		pricingmodel.addEventListener('blur', validate, true);
 
 		button.onclick = function (e) {
- 		Validator.test = Validator.validateAll();
+			e.preventDefault();
+ 		Validator.testValidate = Validator.validateAll();
+ 		Validator.confirmForm();
  		if(Validator.testValidate !== true) {
- 			e.preventDefault();
+ 			
  		}
  		};
 
@@ -101,6 +103,40 @@ validateAll: function() {
 	}
 
 },
+
+confirmForm: function() {
+
+	console.log("hej");
+	var div = document.querySelector("#container");
+    var modal = document.createElement("div");
+    var modalFirstName = document.createElement("p");
+    var modalLastName = document.createElement("p");
+    var modalZip = document.createElement("p");
+    var modalEmail = document.createElement("p");
+    var modalPriceModel = document.createElement("p");
+
+    //firstName.disabled=true;
+
+    form.setAttribute("class","faded"); 
+
+    modalFirstName.appendChild(document.createTextNode("Förnamn: " + firstName.value));
+    modalLastName.appendChild(document.createTextNode("Efternamn: " + lastName.value));
+    modalZip.appendChild(document.createTextNode("Postnummer: " + zip.value));
+    modalEmail.appendChild(document.createTextNode("Email: " + email.value));
+    modalPriceModel.appendChild(document.createTextNode("Prismodell: " + pricingmodel.value));
+
+    modal.setAttribute("class","modalpop"); 
+
+    modal.appendChild(modalFirstName);
+    modal.appendChild(modalLastName);
+    modal.appendChild(modalZip);
+    modal.appendChild(modalEmail);
+    modal.appendChild(modalPriceModel);
+
+    div.appendChild(modal);
+    console.log(div);
+
+}
 
 
 
