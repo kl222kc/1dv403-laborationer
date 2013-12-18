@@ -3,3 +3,17 @@
 	margin-top: 100px;
 	width: 400px;
 }
+
+.error {
+ color: red;
+ float: right;
+ margin-top: -30px;
+}
+
+#form input {
+	width: 350px;
+}
+
+#form select {
+	width: 350px;
+}
