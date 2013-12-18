@@ -1,6 +1,10 @@
 #form {
-	margin-top: 100px;
 	width: 500px;
+	margin-left: 10px;
+}
+
+h1 {
+	margin-left: 10px;
 }
 
 .error {
@@ -23,20 +27,40 @@
 	top:50px;
 	left: 25%;
 	width: 600px;
-	height: 400px;
 	z-index: 100;
-	background-color: green;
-}
-
-.faded .modalkim {
-	opacity: 1;
+	background-color: #5B83AD;
+	padding: 1em;
+	color: white;
+	border: 2px solid #c0c0c0;
 }
 
 #container {
 	margin: 0 auto;
-	width: 99%;
+	width: 100%;
 }
 
 .faded {
 	opacity: 0.2;
+	height: 100%;
+	width: 100%;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:5;
+}
+
+.modalpop p {
+	font-size: 24px;
+}
+
+.modalpop h1 {
+	font-size: 32px;
+	margin: 0;
+	border-bottom: 1px solid #c0c0c0;
+	margin-bottom: 10px;
+}
+
+.modalpop .btn {
+	margin-left: 10px;
+	float: right;
 }

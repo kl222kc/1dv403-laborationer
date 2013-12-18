@@ -10,10 +10,11 @@ var Validator = {
 	email: document.getElementsByName("email")[0],
 	pricingmodel: document.getElementsByName("pricingmodel")[0],
 	testValidate: false,
+	confirm: false,
 
 	init: function() {
 
-		var button = document.querySelector("#submit");
+		var button = document.querySelector("#send");
 
 		firstName.addEventListener('blur', validate, true);
 		lastName.addEventListener('blur', validate, true);
@@ -22,13 +23,15 @@ var Validator = {
 		pricingmodel.addEventListener('blur', validate, true);
 
 		button.onclick = function (e) {
+			
 			e.preventDefault();
- 		Validator.testValidate = Validator.validateAll();
- 		Validator.confirmForm();
- 		if(Validator.testValidate !== true) {
- 			
- 		}
- 		};
+			Validator.testValidate = Validator.validateAll();
+
+			if(Validator.testValidate === true) {
+				Validator.confirmForm();
+			}
+
+		};
 
 		function validate() {
 
@@ -61,10 +64,10 @@ var Validator = {
 		this.value = this.value.replace(/[^0-9]/g,"")
 
 		if (this.value === "" || !(/^(\d{5})?$/.test(this.value))) {
-		var errorMessage = document.createElement("p");
-		errorMessage.setAttribute("class","error");
-		errorMessage.appendChild(document.createTextNode("Ogiltligt Postnummer!"));
-		this.parentNode.appendChild(errorMessage);
+			var errorMessage = document.createElement("p");
+			errorMessage.setAttribute("class","error");
+			errorMessage.appendChild(document.createTextNode("Ogiltligt Postnummer!"));
+			this.parentNode.appendChild(errorMessage);
 		}
 	}
 
@@ -99,42 +102,68 @@ validateAll: function() {
 	var errors = form.querySelectorAll('p.error');
 
 	if(errors.length === 0){
- 		return true;
+		return true;
 	}
 
 },
 
 confirmForm: function() {
 
-	console.log("hej");
 	var div = document.querySelector("#container");
-    var modal = document.createElement("div");
-    var modalFirstName = document.createElement("p");
-    var modalLastName = document.createElement("p");
-    var modalZip = document.createElement("p");
-    var modalEmail = document.createElement("p");
-    var modalPriceModel = document.createElement("p");
 
-    //firstName.disabled=true;
+	var divBack = document.createElement("div");
+	var modal = document.createElement("div");
 
-    form.setAttribute("class","faded"); 
+	divBack.setAttribute("class","faded"); 
+	modal.setAttribute("class","modalpop"); 
 
+	var modalH1 = document.createElement("h1");
+	var modalFirstName = document.createElement("p");
+	var modalLastName = document.createElement("p");
+	var modalZip = document.createElement("p");
+	var modalEmail = document.createElement("p");
+	var modalPriceModel = document.createElement("p");
+
+    div.setAttribute("class","faded"); 
+
+    modalH1.appendChild(document.createTextNode("Vänligen bekräfta ditt köp"));
     modalFirstName.appendChild(document.createTextNode("Förnamn: " + firstName.value));
     modalLastName.appendChild(document.createTextNode("Efternamn: " + lastName.value));
     modalZip.appendChild(document.createTextNode("Postnummer: " + zip.value));
     modalEmail.appendChild(document.createTextNode("Email: " + email.value));
     modalPriceModel.appendChild(document.createTextNode("Prismodell: " + pricingmodel.value));
 
-    modal.setAttribute("class","modalpop"); 
-
+    modal.appendChild(modalH1);
     modal.appendChild(modalFirstName);
     modal.appendChild(modalLastName);
     modal.appendChild(modalZip);
     modal.appendChild(modalEmail);
     modal.appendChild(modalPriceModel);
 
-    div.appendChild(modal);
-    console.log(div);
+    var cancelButton = document.createElement("button");
+    cancelButton.setAttribute("class","btn btn-default btn-lg");
+    cancelButton.appendChild(document.createTextNode("Avbryt"))
+    cancelButton.addEventListener("click",function()
+    {
+    	document.body.removeChild(divBack);
+    	document.body.removeChild(modal);
+    	div.removeAttribute("class");
+    },false);
+
+    var confirmButton = document.createElement("button");
+    confirmButton.setAttribute("class","btn btn-default btn-lg");
+    confirmButton.appendChild(document.createTextNode("Slutför köpet"));
+    confirmButton.addEventListener("click", function()
+    {
+    	form.submit();
+    }
+    ,false)
+
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    div.parentNode.appendChild(divBack);
+    div.parentNode.appendChild(modal);
 
 }
 
