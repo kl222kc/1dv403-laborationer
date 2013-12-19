@@ -21,12 +21,16 @@ var Validator = {
 		zip.addEventListener('blur', validate, true);
 		email.addEventListener('blur', validate, true);
 		pricingmodel.addEventListener('blur', validate, true);
-
+		
+		// Formulär knappen
 		button.onclick = function (e) {
 			
 			e.preventDefault();
+			
+			// Kallar på funktionen som validerar alla fälten 
 			Validator.testValidate = Validator.validateAll();
-
+			
+			// Om validateAll returnerade true så skapas popup fönstret
 			if(Validator.testValidate === true) {
 				Validator.confirmForm();
 			}
@@ -60,9 +64,12 @@ var Validator = {
 	// Kontrollerar ifall postnummret är rätt ifyllt
 	if(this.id === "zip" && !(/^(\d{5})?$/.test(this.value))) {
 
-		// Tar bort allt som inte är en siffra.
-		this.value = this.value.replace(/[^0-9]/g,"")
-
+		// Fixar till postnummren
+		if((/^SE\s\d{3}(\s|\-)\d{2}$/.test(this.value)) || (/^SE\d{3}(\s|\-)\d{2}$/.test(this.value)) || (/^SE\d{5}$/.test(this.value)) || (/^\d{3}(\s|\-)\d{2}$/.test(this.value))) {
+			this.value = this.value.replace(/[^0-9]/g,"")
+		}
+		
+		//Skriver ut felmeddelande om postnummret är fel
 		if (this.value === "" || !(/^(\d{5})?$/.test(this.value))) {
 			var errorMessage = document.createElement("p");
 			errorMessage.setAttribute("class","error");
@@ -77,6 +84,7 @@ var Validator = {
 
 },
 
+//Funktion som kollar igenom om alla fälten är rätt
 validateAll: function() {
 
 	if(firstName.value === "") {
@@ -100,13 +108,17 @@ validateAll: function() {
 	}
 
 	var errors = form.querySelectorAll('p.error');
-
+	// Om det inte finns några fel returna true
 	if(errors.length === 0){
 		return true;
+	}
+	else {
+		return false;
 	}
 
 },
 
+//Funktion som skapar popupfönstret
 confirmForm: function() {
 
 	var div = document.querySelector("#container");
