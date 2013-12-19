@@ -10,7 +10,6 @@ var Validator = {
 	email: document.getElementsByName("email")[0],
 	pricingmodel: document.getElementsByName("pricingmodel")[0],
 	testValidate: false,
-	confirm: false,
 
 	init: function() {
 
@@ -122,11 +121,8 @@ validateAll: function() {
 confirmForm: function() {
 
 	var div = document.querySelector("#container");
-
-	var divBack = document.createElement("div");
 	var modal = document.createElement("div");
 
-	divBack.setAttribute("class","faded"); 
 	modal.setAttribute("class","modalpop"); 
 
 	var modalH1 = document.createElement("h1");
@@ -156,8 +152,12 @@ confirmForm: function() {
     cancelButton.setAttribute("class","btn btn-default btn-lg");
     cancelButton.appendChild(document.createTextNode("Avbryt"))
     cancelButton.addEventListener("click",function()
-    {
-    	document.body.removeChild(divBack);
+    {	
+    	// Aktiverar formuläret.
+		for(var i = 0; i < form.querySelectorAll('input, select, #send').length; i++) {
+			form.querySelectorAll('input, select, #send')[i].disabled = false;
+		}
+
     	document.body.removeChild(modal);
     	div.removeAttribute("class");
     },false);
@@ -166,7 +166,11 @@ confirmForm: function() {
     confirmButton.setAttribute("class","btn btn-default btn-lg");
     confirmButton.appendChild(document.createTextNode("Slutför köpet"));
     confirmButton.addEventListener("click", function()
-    {
+    {	
+    	// Aktiverar formuläret.
+		for(var i = 0; i < form.querySelectorAll('input, select, #send').length; i++) {
+			form.querySelectorAll('input, select, #send')[i].disabled = false;
+		}
     	form.submit();
     }
     ,false)
@@ -174,8 +178,12 @@ confirmForm: function() {
     modal.appendChild(confirmButton);
     modal.appendChild(cancelButton);
 
-    div.parentNode.appendChild(divBack);
     div.parentNode.appendChild(modal);
+
+    // Stängar av formuläret när popupen skapas.
+	for(var i = 0; i < form.querySelectorAll('input, select, #send').length; i++) {
+		form.querySelectorAll('input, select, #send')[i].disabled = true;
+	}
 
 }
 
