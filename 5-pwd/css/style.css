@@ -19,3 +19,15 @@ body {
 	opacity: 0.5;
 	cursor: pointer;
 }
+
+#window {
+	margin: 20px;
+	width: 500px;
+	height: 500px;
+	background-color: white;
+	border: 1px ridge #c0c0c0;
+}
+
+.closeButton {
+	float: right;
+}
