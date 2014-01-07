@@ -21,13 +21,50 @@ body {
 }
 
 #window {
+	position: relative;
 	margin: 20px;
 	width: 500px;
 	height: 500px;
 	background-color: white;
-	border: 1px ridge #c0c0c0;
+	border: 5px solid #5B83AD;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
 }
 
 .closeButton {
 	float: right;
+	width: 16px;
+	opacity: 0.5;
+}
+
+.closeButton:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.windowHeader {
+	height: 40px;
+	background-color: #5B83AD;
+}
+
+.windowIcon {
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 24px;
+}
+
+.windowHeader span {
+	margin-left: 5px;
+	vertical-align: 6px;
+	color: white;
+	font-family: Verdana, sans-serif;
+}
+
+.statusField {
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	bottom: 0;
+	background-color: #5B83AD;
 }
