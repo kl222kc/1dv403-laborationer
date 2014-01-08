@@ -22,6 +22,7 @@ var main = {
 		var window = document.createElement("div");
 		var windowHeader = document.createElement("div");
 		var statusField = document.createElement("div");
+		var gallery = document.createElement("div");
 		var closeButton = document.createElement("img");
 		var windowIcon = document.createElement("img");
 		var windowText = document.createElement("span");
@@ -29,10 +30,22 @@ var main = {
 		
 		main.getImages(function(data){
 		var images = JSON.parse(data);
-        console.log(images);
+
+        for (var i = 0; i < images.length; i++) {
+        	var thumbnailLink = document.createElement("a");
+        	thumbnailLink.setAttribute("class", "thumbnail");
+
+        	var thumbnail = document.createElement("img");
+            thumbnail.setAttribute("src",images[i].thumbURL);
+            thumbnail.setAttribute("height",images[i].thumbHeight)
+            thumbnail.setAttribute("width",images[i].thumbWidth)
+            thumbnailLink.appendChild(thumbnail);
+            gallery.appendChild(thumbnailLink);
+        }
         });
 
 		window.setAttribute("id","window"); 
+		gallery.setAttribute("id","gallery"); 
 		statusField.setAttribute("class","statusField"); 
 
 		windowHeader.setAttribute("class","windowHeader"); 
@@ -53,6 +66,7 @@ var main = {
 		windowHeader.appendChild(windowText);
 		windowHeader.appendChild(closeButton);
 		window.appendChild(windowHeader);
+		window.appendChild(gallery);
 		window.appendChild(statusField);
 		body.appendChild(window);
 
