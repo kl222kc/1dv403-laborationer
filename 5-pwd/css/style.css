@@ -72,11 +72,12 @@ body {
 	position: absolute;
 }
 
-a.thumbnail {
-	height: 100px;
-	width: 200px;
+.thumbnail {
+	padding: 2em;
+	padding-left: 3em;
+	padding-right: 3em;
 	background: rgba(51, 102, 153, .1);
-	margin: 19px;
+	margin: 30px;
 	display: inline-block;
 	border: 1px outset black;
 	-webkit-box-shadow: 4px 4px 7px 0px rgba(50, 50, 50, 0.33);
@@ -85,11 +86,10 @@ a.thumbnail {
 	cursor: pointer;
 }
 
-a.thumbnail img {
+.thumbnail img {
 	display: block;
 	margin: 0 auto;
 	position:relative;
-    top:25%;
 }
 
 #gallery {

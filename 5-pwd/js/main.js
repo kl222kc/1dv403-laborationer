@@ -3,8 +3,7 @@
 var main = {
 	icon: document.getElementById("icon"),
 
-	init: function ()
-	{
+	init: function () {
 
 		main.icon.onclick = function(){
 
@@ -43,11 +42,28 @@ var main = {
 		main.getImages(function(data){
 
 		var images = JSON.parse(data);
+		
+		var largestWidth = 0;
+		var largestHeight = 0;
+		
+		for(var i = 0; i < images.length; i++) {
+			
+			if(largestWidth < images[i].thumbWidth) {
+				largestWidth = images[i].thumbWidth;
+			}
+			
+			if(largestHeight < images[i].thumbHeight) {
+				largestHeight = images[i].thumbHeight;
+			}
+
+		}
 
         for (var i = 0; i < images.length; i++) {
-        	var thumbnailLink = document.createElement("a");
+        	var thumbnailLink = document.createElement("div");
         	thumbnailLink.setAttribute("class", "thumbnail");
-        	thumbnailLink.setAttribute("id", i);
+			thumbnailLink.setAttribute("style","width:" + largestWidth + "px;" + "height:" + largestHeight + "px");
+            //thumbnailLink.setAttribute("style","height:" + largestHeight + "px");
+			thumbnailLink.setAttribute("id", i);
 
         	var thumbnail = document.createElement("img");
             thumbnail.setAttribute("src",images[i].thumbURL);
@@ -105,10 +121,6 @@ var main = {
 		var READY_STATE_COMPLETE = 4;
 
 		var xhr = new XMLHttpRequest();
-
-		if(xhr.readyState === READY_STATE_LOADING) {
-			console.log("laddar");
-		}
 
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState === READY_STATE_COMPLETE)
