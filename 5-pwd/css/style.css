@@ -67,8 +67,9 @@ body {
 
 .statusField {
 	width: 100%;
-	height: 20px;
+	height: 30px;
 	background-color: #5B83AD;
+	position: absolute;
 }
 
 a.thumbnail {
@@ -81,6 +82,7 @@ a.thumbnail {
 	-webkit-box-shadow: 4px 4px 7px 0px rgba(50, 50, 50, 0.33);
 	-moz-box-shadow:    4px 4px 7px 0px rgba(50, 50, 50, 0.33);
 	box-shadow:         4px 4px 7px 0px rgba(50, 50, 50, 0.33);
+	cursor: pointer;
 }
 
 a.thumbnail img {
@@ -91,7 +93,13 @@ a.thumbnail img {
 }
 
 #gallery {
-	height: 440px;
+	height: 430px;
 	position: relative;
 	overflow-y: auto;
+}
+
+.loading {
+margin-left: 20px;
+margin-top: 8px;
+color: white;
 }

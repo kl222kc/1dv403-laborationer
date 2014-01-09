@@ -27,21 +27,46 @@ var main = {
 		var windowIcon = document.createElement("img");
 		var windowText = document.createElement("span");
 		var text = document.createTextNode("Image Gallery");
-		
+
+		if(!gallery.querySelectorAll('img').length > 0) {
+			var loading = document.createElement("span");
+			var loadingText = document.createTextNode("Laddar...");
+			var loadingGif = document.createElement("img");
+			loadingGif.setAttribute("src","pics/loading.gif");
+			loading.setAttribute("class", "loading");
+			loadingGif.setAttribute("class", "loading");
+			statusField.appendChild(loadingGif);
+			loading.appendChild(loadingText);
+			statusField.appendChild(loading);
+		}
+
 		main.getImages(function(data){
+
 		var images = JSON.parse(data);
 
         for (var i = 0; i < images.length; i++) {
         	var thumbnailLink = document.createElement("a");
         	thumbnailLink.setAttribute("class", "thumbnail");
+        	thumbnailLink.setAttribute("id", i);
 
         	var thumbnail = document.createElement("img");
             thumbnail.setAttribute("src",images[i].thumbURL);
             thumbnail.setAttribute("height",images[i].thumbHeight)
             thumbnail.setAttribute("width",images[i].thumbWidth)
+            thumbnailLink.addEventListener("click", changeBackground, false)
+
             thumbnailLink.appendChild(thumbnail);
             gallery.appendChild(thumbnailLink);
         }
+
+        statusField.removeChild(loading);
+        statusField.removeChild(loadingGif);
+
+        function changeBackground() {
+        	var background = images[this.id].URL;
+			document.body.style.backgroundImage="url(" + background + ")";
+		};
+
         });
 
 		window.setAttribute("id","window"); 
@@ -80,6 +105,10 @@ var main = {
 		var READY_STATE_COMPLETE = 4;
 
 		var xhr = new XMLHttpRequest();
+
+		if(xhr.readyState === READY_STATE_LOADING) {
+			console.log("laddar");
+		}
 
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState === READY_STATE_COMPLETE)
