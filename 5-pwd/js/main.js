@@ -5,7 +5,7 @@ var main = {
 
 	init: function () {
 
-		// Skapar fönster vid klick om det inte redan finns
+		// Skapar fönster vid klick på ikonen om det inte redan finns
 		main.icon.onclick = function(){
 
 			if (!document.getElementById("window")) {
@@ -29,7 +29,7 @@ var main = {
 		var windowText = document.createElement("span");
 		var text = document.createTextNode("Image Gallery");
 
-		// Visa i statusfilden att bilderna håller på att laddas in
+		// Visa i statusfielden att bilderna håller på att laddas in
 		if(!gallery.querySelectorAll('img').length > 0) {
 			var loading = document.createElement("span");
 			var loadingText = document.createTextNode("Laddar...");
@@ -67,7 +67,7 @@ var main = {
         for (var i = 0; i < images.length; i++) {
         	var thumbnailLink = document.createElement("div");
         	thumbnailLink.setAttribute("class", "thumbnail");
-			thumbnailLink.setAttribute("style","width:" + 80 + "px;" + "height:" + largestHeight + "px");
+			thumbnailLink.setAttribute("style","width:" + largestWidth + "px;" + "height:" + largestHeight + "px");
 			thumbnailLink.setAttribute("id", i);
 
         	var thumbnail = document.createElement("img");
