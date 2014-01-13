@@ -61,8 +61,7 @@ var main = {
         for (var i = 0; i < images.length; i++) {
         	var thumbnailLink = document.createElement("div");
         	thumbnailLink.setAttribute("class", "thumbnail");
-			thumbnailLink.setAttribute("style","width:" + largestWidth + "px;" + "height:" + largestHeight + "px");
-            //thumbnailLink.setAttribute("style","height:" + largestHeight + "px");
+			thumbnailLink.setAttribute("style","width:" + 80 + "px;" + "height:" + largestHeight + "px");
 			thumbnailLink.setAttribute("id", i);
 
         	var thumbnail = document.createElement("img");
@@ -75,8 +74,10 @@ var main = {
             gallery.appendChild(thumbnailLink);
         }
 
-        statusField.removeChild(loading);
-        statusField.removeChild(loadingGif);
+        if(gallery.querySelectorAll('img').length > 0) {
+        	statusField.removeChild(loading);
+			statusField.removeChild(loadingGif);
+        }
 
         function changeBackground() {
         	var background = images[this.id].URL;
