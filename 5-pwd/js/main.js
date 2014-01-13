@@ -5,6 +5,7 @@ var main = {
 
 	init: function () {
 
+		// Skapar fönster vid klick om det inte redan finns
 		main.icon.onclick = function(){
 
 			if (!document.getElementById("window")) {
@@ -15,6 +16,7 @@ var main = {
 
 	},
 
+	// Skapar fönster för bildgalleriet
 	createWindow: function() {
 
 		var body = document.querySelector("body");
@@ -27,6 +29,7 @@ var main = {
 		var windowText = document.createElement("span");
 		var text = document.createTextNode("Image Gallery");
 
+		// Visa i statusfilden att bilderna håller på att laddas in
 		if(!gallery.querySelectorAll('img').length > 0) {
 			var loading = document.createElement("span");
 			var loadingText = document.createTextNode("Laddar...");
@@ -39,6 +42,7 @@ var main = {
 			statusField.appendChild(loading);
 		}
 
+		// Hämtar en array med bilder via funktionen getImages
 		main.getImages(function(data){
 
 		var images = JSON.parse(data);
@@ -46,6 +50,7 @@ var main = {
 		var largestWidth = 0;
 		var largestHeight = 0;
 		
+		// Letar upp högsta bredden och höjden på thumbnails
 		for(var i = 0; i < images.length; i++) {
 			
 			if(largestWidth < images[i].thumbWidth) {
@@ -58,6 +63,7 @@ var main = {
 
 		}
 
+		// Skapar bilderna från arrayen och skriver ut dom i bildgalleriet
         for (var i = 0; i < images.length; i++) {
         	var thumbnailLink = document.createElement("div");
         	thumbnailLink.setAttribute("class", "thumbnail");
@@ -74,11 +80,11 @@ var main = {
             gallery.appendChild(thumbnailLink);
         }
 
-        if(gallery.querySelectorAll('img').length > 0) {
-        	statusField.removeChild(loading);
-			statusField.removeChild(loadingGif);
-        }
+        // Efter bilderna har skapats ta bort att det laddas
+    	statusField.removeChild(loading);
+		statusField.removeChild(loadingGif);
 
+		// Vid klick på någon av bilderna i galleriet så byts backgrunden på sidan till den klickade bilden
         function changeBackground() {
         	var background = images[this.id].URL;
 			document.body.style.backgroundImage="url(" + background + ")";
@@ -98,7 +104,8 @@ var main = {
 		windowIcon.setAttribute("class","windowIcon");
 
 		closeButton.addEventListener("click", closeWindow, false)
-
+		
+		// Tar bort fönstret vid klick på closeButton
 		function closeWindow() {
 			document.body.removeChild(window);
 		};
@@ -114,6 +121,7 @@ var main = {
 
 	},
 
+	// Ajax anrop
 	getImages: function (callback) {
 		var READY_STATE_UNINITIALIZED = 0;
 		var READY_STATE_OPENED = 1;
