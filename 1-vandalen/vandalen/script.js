@@ -11,7 +11,7 @@ var makePerson = function(persArr){
 	});
 
 	// Kör igenom hela objektet lägger till varje age till sum och varje name till names.
-	for(var i = 0; i < Object.keys(persArr).length; i++) {
+	for(var i = 0; i < persArr.length; i++) {
 		sum += persArr[i].age;
 		names = names + persArr[i].name;
 
@@ -30,7 +30,7 @@ var makePerson = function(persArr){
 	var maxAge = persArr[persArr.length - 1].age;
 
 	// Tar ut medelvärdet
-	var avg = sum/Object.keys(persArr).length;
+	var avg = sum/persArr.length;
 	avg = Math.round(avg);
 
 	// Nytt objekt innehållandes resultatet

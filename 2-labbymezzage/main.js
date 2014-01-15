@@ -81,6 +81,7 @@ var main = {
  		if(confirm("Vill du ta bort meddelandet?"))
  		{
  			main.messages.splice(messageID, 1);
+ 			main.renderMessages();
  		}
 
  	}

@@ -17,7 +17,7 @@ window.onload = function(){
 			return answer;
 		}
 
-		if (number > 100 || number < 0) {
+		if (number > 100 || number < 0 || number === "") {
 			answer[0] = false;
 			answer[1] = "Talet är utanför intervallet 0 - 100";
 			return answer;
